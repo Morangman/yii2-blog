@@ -52,19 +52,6 @@ class Users extends \yii\db\ActiveRecord
         }
       }
       return true;
-    }    
-    /**
-     * @inheritdoc
-     */
-    public function beforeSave($insert)
-    {
-        if (!$insert){
-			$this->registered = new \yii\db\Expression('NOW()');
-        } 
-		if ($this->pwd){
-			$this->pwd = md5($this->pwd . date("iHdmY",strtotime($this->registered)));
-		}
-      return true;
     }
 
     /**

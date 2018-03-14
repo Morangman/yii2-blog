@@ -79,17 +79,6 @@ class Posts extends \yii\db\ActiveRecord
         }
       }
     }
-	
-    /**
-     * @inheritdoc
-     */
-    public function beforeSave($insert)
-    {
-        if (!$insert){
-			$this->modified = new \yii\db\Expression('NOW()');
-        } 
-      return true;
-    }
 
     /**
      * @inheritdoc
