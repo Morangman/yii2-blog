@@ -1,0 +1,36 @@
+sudo apt-get update
+sudo apt-get install apache2
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+sudo apt-get install mysql-server
+echo 'mysql password: GoodEvening23th'
+sudo apt-get install python-software-properties software-properties-common
+sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php7.0 php7.0-fpm php7.0-mysql curl php7.0-curl php7.0-dev -y
+sudo apache2ctl configtest
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php7.0-fpm
+sudo systemctl reload apache2
+sudo systemctl reload apache2
+wget http://xdebug.org/files/xdebug-2.6.0alpha1.tgz
+tar -xvzf xdebug-2.6.0alpha1.tgz
+cd xdebug-2.6.0alpha1
+phpize
+./configure
+make
+sudo cp modules/xdebug.so /usr/lib/php/20151012
+printf "\n[xdebug]\nzend_extension = /usr/lib/php/20151012/xdebug.so" | sudo tee -a  /etc/php/7.0/fpm/php.ini 
+sudo service php7.0-fpm restart
+sudo systemctl reload apache2
+wget https://files.phpmyadmin.net/phpMyAdmin/4.7.6/phpMyAdmin-4.7.6-all-languages.zip
+unzip phpMyAdmin-4.7.6-all-languages.zip
+sudo mv phpMyAdmin-4.7.6-all-languages/ /var/www/html/adm/
+sudo apt-get install composer
+cd /var/www/html
+sudo chown -R g:g /home/g/.composer
+sudo chown -R g:g /var/www/html
+sudo apt-get install php7.0-mbstring php7.0-dom php7.0-gd php7.0-imagick
+composer create-project --prefer-dist yiisoft/yii2-app-basic basic
+echo "https://github.com/ilopX/yii2-basic-htaccess"
+echo "/etc/apache2/apache2.conf:172 : AllowOverride None -> AllowOverride All"

@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+</IfModule>
+ 
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^requirements\.php$ requirements.php [L]
+    RewriteRule ^(.*)$ /yii2-proj/web/$1 [R]
+</IfModule> 
